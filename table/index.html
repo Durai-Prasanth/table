@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<link rel="stylesheet" href="style.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+
+<header>
+
+</header>
+<br>
+<br>
+<br>
+ <div class="container">
+     <div class="table-img" align="center">
+         <h3>Can you identify what you should and should not keep on your desk when you are not around</h3>
+         <img src="images/table.jpg" width="900px">
+         <div id="quiz" class="quiz">
+            
+                  <div class="question qusProp">
+                      <h3><span class="label label-warning" id="qid">1</span>
+                      <span id="question"> Desk key on the Cabinet?</span>
+                      </h3>
+                      <br>
+                      <ul>
+                          <li>
+                      <input type="radio" id="f-option" name="selector" value="0" style="display:none;">
+                      <label for="f-option" class="element-animation opYes" id="col"><i id="right" class="fa fa-check righttick" aria-hidden="true" style="display: none;"></i>Yes<i id="wrongyes" class="fa fa-times wrongtick" aria-hidden="true"  style="display: none;"></i></label>
+                          </li>
+                          <li>
+                      <input type="radio" id="s-option" name="selector" value="1"  style="display:none;">
+                      <label for="s-option" class="element-animation opNo" id="col2"><i id="wrongno" class="fa fa-times wrongtick" aria-hidden="true"  style="display: none;"></i>No<i id="rightno" class="fa fa-check righttick" aria-hidden="true" style="display: none;"></i></label>
+                    </li>
+                    </ul>
+                  </div>
+                  <div class="box"></div>
+              </div>
+     </div>
+ </div>
+ <div class="container">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div id="result-of-question" class="pulse animated" style="display: none;">
+                <span id="totalCorrect" class="pull-right"></span>
+                <table class="table table-hover table-responsive" >
+                    <thead>
+                        <tr>
+                            <th>Question No.</th>
+                            <th>Our answer</th>
+                            <th>Your answer</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody id="quizResult"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+                  <!-- <ul>
+                    <li>
+                      <input type="radio" id="f-option" name="selector" value="1">
+                      <label for="f-option" class="element-animation">Yes</label>
+                      <div class="check"></div>
+                    </li>
+                    
+                    <li>
+                      <input type="radio" id="s-option" name="selector" value="2">
+                      <label for="s-option" class="element-animation">No</label>
+                      <div class="check"><div class="inside"></div></div>
+                    </li>
+                  </ul> -->
+                  <script src="js/question.js"></script>
+</body>
+</html>
