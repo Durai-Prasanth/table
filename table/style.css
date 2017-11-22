@@ -309,32 +309,27 @@ body, html{
   
   #result-of-question th{
     text-align: center;
-      background: #75ba48;
-      color: #fff;
-      padding: 18px;
-      font-size: 18px;
-      border: none;
+    background: #ffca04;
+    color: #fff;
+    border: none;
   }
   #result-of-question  td{
     text-align: center;
-      color: #222;
-      background-color: #fff;
-      padding: 18px;
-      font-size: 15px;
-      font-weight: 600;
-      border: 1px solid #75ba48;
+    color: #222;
+    background-color: #fff;
+    padding: 6px;
+    font-size: 14px;
+    border: 1px solid #75ba48;
   }
   
   #totalCorrect{
-      color: #fff;
-      background: #75ba48;
-      padding: 22px 20px;
-      border-radius: 1px;
-      font-stretch: expanded;
-      font-size: 28px;
-      font-weight: bold;
-      border-top-right-radius: 25px;
-      border-top-left-radius: 25px;  
+    width: 100%;
+    color: #fff;
+    background: #ffca04;
+    font-size: 20px;
+    border-bottom: 1px solid;
+    padding-left: 10px;  
+    text-align: -webkit-left;
   }
   #alert{
       /* Position fixed */
@@ -431,4 +426,10 @@ i#right {
     position: relative;
     right: 30px;
     font-size: 24px;
+}
+.resultdis
+{
+    width: 900px;
+    margin-top: -48%;
+    position: relative;
 }
