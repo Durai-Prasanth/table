@@ -1,6 +1,7 @@
 
 /*--------loader script-----------*/
 $(function(){
+    var reslt =""
     var loading = $('#loadbar').hide();
     $(document)
     .ajaxStart(function () {
@@ -11,61 +12,73 @@ $(function(){
     
     var questionNo = 0;
     var correctCount = 0;
+    
     var q = [
         {'Q':'Desk key on the Cabinet?', 'A':1,'B':['Yes','No']},
-        {'Q':'Car key on the Cabinet?', 'A':1,'B':['Yes','No']},
+        {'Q':'Car key on the Desk?', 'A':1,'B':['Yes','No']},
         {'Q':'Confidential papers on the Desk?', 'A':1,'B':['Yes','No']},
         {'Q':'Coffee mug on the Desk?', 'A':0,'B':['Yes','No']},
         {'Q':'Pen stand on the Desk?', 'A':0,'B':['Yes','No']},
-        {'Q':'Cosmetic items on the Desk?', 'A':1,'B':['Yes','No']},
-        {'Q':'File contain confidential data on the deck?', 'A':1,'B':['Yes','No']},
-        {'Q':'Reference book on the Cabinet?', 'A':0,'B':['Yes','No']},
-        {'Q':'Unlocked Laptop on the Cabinet?', 'A':1,'B':['Yes','No']},
-        {'Q':'Holiday List on the Cabinet?', 'A':0,'B':['Yes','No']},
-        {'Q':'Stick on note with passwords written on the Cabinet?', 'A':1,'B':['Yes','No']},
-        {'Q':'Mobile on the Cabinet?', 'A':0,'B':['Yes','No']},
+        {'Q':'Cosmetic items on the Desk?', 'A':0,'B':['Yes','No']},
+        {'Q':'File with Personal documents on the Desk?', 'A':1,'B':['Yes','No']},
+        {'Q':'Reference book on the Desk?', 'A':0,'B':['Yes','No']},
+        {'Q':'Unlocked Laptop on the Desk?', 'A':1,'B':['Yes','No']},
+        {'Q':'Holiday List on the Desk?', 'A':0,'B':['Yes','No']},
+        {'Q':'Stick on note with passwords written on the Desk?', 'A':1,'B':['Yes','No']},
+        {'Q':'Mobile on the Desk?', 'A':1,'B':['Yes','No']},
         {'Q':'Papers in dust bin?', 'A':1,'B':['Yes','No']},
-        {'Q':'Waste boxes on the Cabinet?', 'A':1,'B':['Yes','No']},
+        {'Q':'Waste boxes below the Cabinet?', 'A':1,'B':['Yes','No']},
     ];
 
     $(document.body).on('click',"label.element-animation",function (e) {
-        
-    //ripple start
-        // var parent, ink, d, x, y;    	
-        //  parent = $(this);
-        // if(parent.find(".ink").length == 0)
-        //     parent.prepend("<span class='ink'></span>");
-            
-        // ink = parent.find(".ink");
-        // ink.removeClass("animate");
-        
-        // if(!ink.height() && !ink.width())
-        // {
-        //     d = Math.max(parent.outerWidth(), parent.outerHeight());
-        //     ink.css({height: "100px", width: "100px"});
-        // }
-        
-        //  x = e.pageX - parent.offset().left - ink.width()/2;
-        // y = e.pageY - parent.offset().top - ink.height()/2;
-        
-        // ink.css({top: y+'px', left: x+'px'}).addClass("animate");
-    //ripple end
+          var text = question.innerHTML;
+      // alert(text)
+  
+ 
 
         var choice = $(this).parent().find('input:radio').val();
+       
         console.log(choice);
     	var anscheck =  $(this).checking(questionNo, choice);//$( "#answer" ).html(  );      
         q[questionNo].UC = choice;
+
+        // alert("Answer"+q[questionNo].A)
+        // alert("choice"+choice)
+        // alert("anscheck"+anscheck)
+        var invalid="red";    
+        var valid="green";  
+        var na="block";  
         if(anscheck)
-        {
-         
+        { 
+           
+            if(q[questionNo].A==0)
+             {  document.getElementById("col").style.background=valid;
+               document.getElementById("col2").style.background="";
+            }
+            else { 
+                document.getElementById("col2").style.background=valid;
+                document.getElementById("col").style.background="";
+        }
             
             correctCount++;
             q[questionNo].result = "Correct";
         } else {
-           
+            if(q[questionNo].A==1)
+            {
+                document.getElementById("col2").style.background=valid;
+                document.getElementById("col").style.background=invalid;
+            }
+            else{
+                document.getElementById("col2").style.background=invalid;
+                document.getElementById("col").style.background=valid;
+            }
             
             q[questionNo].result = "Incorrect";   
         }
+
+        reslt=q[questionNo].result;
+        console.log(reslt+"---------")
+        //console.log(q[questionNo].result)
         console.log("CorrectCount:" + correctCount);
     
         setTimeout(function(){
@@ -121,8 +134,9 @@ $(function(){
             }
             if(questionNo == 6)
             {
-                document.getElementsByClassName("qusProp")[0].style.right="-266px";
+                document.getElementsByClassName("qusProp")[0].style.right="-280px";
                 document.getElementsByClassName("qusProp")[0].style.top="-250px";
+                document.getElementsByClassName("qusProp")[0].style.width="340px";
                 document.getElementsByClassName("box")[0].style.top="-276px";
                 document.getElementsByClassName("box")[0].style.left="25px";
                 document.getElementsByClassName("box")[0].style.width="120px";
@@ -132,6 +146,7 @@ $(function(){
             {
                 document.getElementsByClassName("qusProp")[0].style.right="-250px";
                 document.getElementsByClassName("qusProp")[0].style.top="-233px";
+                document.getElementsByClassName("qusProp")[0].style.width="330px";
                 document.getElementsByClassName("box")[0].style.top="-248px";
                 document.getElementsByClassName("box")[0].style.left="0px";
                 document.getElementsByClassName("box")[0].style.width="110px";
@@ -195,17 +210,33 @@ $(function(){
                 document.getElementsByClassName("box")[0].style.width="200px";
                 document.getElementsByClassName("box")[0].style.height="200px";
             }
+            
             if((questionNo + 1) > q.length){
                 alert("Quiz completed, Now click ok to get your answer");
                 $('label.element-animation').unbind('click');
                 setTimeout(function(){
+                  //  alert((q[questionNo].result))
+
+        console.log(reslt+"---------66666666")
                     var toAppend = '';
                     $.each(q, function(i, a){
+                        var vAns=""
+                        if(a.A==1){
+                            vAns="NO"
+                        }else{
+                            vAns="YES"
+                        }
+                        if(choice==1){
+                            vSele="NO"
+                        }else{
+                            vSele="YES"
+                        }
+                        console.log(a.Q)
                         toAppend += '<tr>'
-                        toAppend += '<td>'+(i+1)+'</td>';
-                        toAppend += '<td>'+a.A+'</td>';
-                        toAppend += '<td>'+a.UC+'</td>';
-                        toAppend += '<td>'+a.result+'</td>';
+                        toAppend += '<td>'+(a.Q)+'</td>';
+                        toAppend += '<td>'+vSele+'</td>';
+                        toAppend += '<td>'+vAns+'</td>';
+                        // toAppend += '<td>'+a.result+'</td>';
                         toAppend += '</tr>'
                     });
                     $('#quizResult').html(toAppend);
@@ -227,7 +258,7 @@ $(function(){
                 $($('#f-option').parent().find('label')).html(q[questionNo].C[0]);
                 $($('#s-option').parent().find('label')).html(q[questionNo].C[1]);
             }
-        }, 400);
+        },100);
     });
 
     
@@ -239,56 +270,5 @@ $(function(){
             return true;
     }; 
 
-// chartMake();
-    // function chartMake(){
 
-    //      var chart = AmCharts.makeChart("chartdiv",
-    //         {
-    //         "type": "serial",
-    //         "theme": "dark",
-    //         "dataProvider": [{
-    //             "name": "Correct",
-    //             "points": correctCount,
-    //             "color": "#00FF00",
-    //             "bullet": "http://i2.wp.com/img2.wikia.nocookie.net/__cb20131006005440/strategy-empires/images/8/8e/Check_mark_green.png?w=250"
-    //         }, {
-    //             "name": "Incorrect",
-    //             "points":q.length-correctCount,
-    //             "color": "red",
-    //             "bullet": "http://4vector.com/i/free-vector-x-wrong-cross-no-clip-art_103115_X_Wrong_Cross_No_clip_art_medium.png"
-    //         }],
-    //         "valueAxes": [{
-    //             "maximum": q.length,
-    //             "minimum": 0,
-    //             "axisAlpha": 0,
-    //             "dashLength": 4,
-    //             "position": "left"
-    //         }],
-    //         "startDuration": 1,
-    //         "graphs": [{
-    //             "balloonText": "<span style='font-size:13px;'>[[category]]: <b>[[value]]</b></span>",
-    //             "bulletOffset": 10,
-    //             "bulletSize": 52,
-    //             "colorField": "color",
-    //             "cornerRadiusTop": 8,
-    //             "customBulletField": "bullet",
-    //             "fillAlphas": 0.8,
-    //             "lineAlpha": 0,
-    //             "type": "column",
-    //             "valueField": "points"
-    //         }],
-    //         "marginTop": 0,
-    //         "marginRight": 0,
-    //         "marginLeft": 0,
-    //         "marginBottom": 0,
-    //         "autoMargins": false,
-    //         "categoryField": "name",
-    //         "categoryAxis": {
-    //             "axisAlpha": 0,
-    //             "gridAlpha": 0,
-    //             "inside": true,
-    //             "tickLength": 0
-    //         }
-    //     });
-    // }
 });	
